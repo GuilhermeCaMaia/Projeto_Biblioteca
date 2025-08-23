@@ -3,27 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <title>Biblioteca Digital</title>
-    @vite('resources/css/app.css')
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body class="bg-gray-50 text-gray-800 font-sans">
+<body class="bg-light">
 
     <!-- Navbar -->
-    <header class="bg-blue-600 text-white shadow-md">
-        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-            <h1 class="text-2xl font-bold">Biblioteca Digital</h1>
-            <nav class="space-x-4">
-                <a href="#" class="hover:underline">Início</a>
-                <a href="#" class="hover:underline">Catálogo</a>
-                <a href="#" class="hover:underline">login</a>
-                <a href="#" class="hover:underline">Cadastro</a>
-            </nav>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="{{ route('user.index') }}">Biblioteca Digital</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="#">Início</a></li>
+                    {{-- condicional para acessar paginas de admin --}}
+                    @if(auth()->check() && auth()->user()->role == 'admin')
+                        <li class="nav-item"><a class="nav-link" href="{{ route('autor.create') }}">Cadastrar autor</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('livro.create') }}">Cadastrar livro</a></li>
+                    @endif
+                    {{-- condicional para acessar paginas de usuario --}}
+                    @if(auth()->check() && auth()->user()->role == 'user')
+                        <li class="nav-item"><a class="nav-link" href="{{ route('catalogo.create') }}">Catálogo</a></li>
+                    @endif
+                    <li class="nav-item">
+                        <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                            @csrf
+                            <button
+                                type="submit"
+                                class="btn btn-link nav-link text-white"
+                                style="display: inline; padding: 0; margin: 0; transition: background-color 0.3s, color 0.3s;"
+                                onmouseover="this.style.backgroundColor='#0d6efd'; this.style.color='#fff';"
+                                onmouseout="this.style.backgroundColor=''; this.style.color='white';"
+                                >
+                                    logout
+                            </button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </header>
-    
-    <!-- Rodapé -->
-    <footer class="bg-gray-200 text-center py-6 mt-12 text-gray-600">
-        © {{ date('Y') }} Biblioteca Digital. Todos os direitos reservados.
+    </nav>
+    @yield('content')
+<!-- Rodapé -->
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container text-center">
+            © {{ date('Y') }} Biblioteca Digital. Todos os direitos reservados.
+        </div>
     </footer>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

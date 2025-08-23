@@ -1,5 +1,5 @@
 @extends('user.layoutUser')
-@section('title', 'Cadastro de Autor')
+@section('title', 'home')
 
 @section('content')
     <!-- Banner / Hero -->

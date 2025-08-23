@@ -17,7 +17,9 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link active" href="#">Início</a></li>
+                    @if(auth()->check() && auth()->user()->role == 'user')
                     <li class="nav-item"><a class="nav-link" href="#">Catálogo</a></li>
+                    @endif
                     <li class="nav-item"><a class="nav-link" href="{{ route('autor.create') }}">Cadastrar autor</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('livro.create') }}">Cadastrar livro</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('logout') }}">logout</a></li>

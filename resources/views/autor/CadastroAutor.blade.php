@@ -1,4 +1,4 @@
-@extends('admin.layoutAdmin')
+@extends('layouts.layout')
 @section('title', 'Cadastro de Autor')
 
 @section('content')
