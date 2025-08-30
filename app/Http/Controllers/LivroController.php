@@ -13,7 +13,7 @@ class LivroController extends Controller
     {
         $livros = Livro::all();
         $autors = Autor::all();
-        return view('admin.livro.CadastroLivro', compact('livros', 'autors'));
+        return view('livro.CadastroLivro', compact('livros', 'autors'));
     }
 
     public function store(Request $request)
@@ -49,5 +49,16 @@ class LivroController extends Controller
     public function destroy($id){
         Livro::where('id', $id)->delete();
         return redirect()->route('livro.create');
+    }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('q');
+
+        $livros = $query
+            ? Livro::where('titulo', 'like', "%{$query}%")->get()
+            : collect();
+
+        return view('search', compact('livros'));
     }
 }
