@@ -11,7 +11,7 @@ class AutorController extends Controller
     public function create()
     {
         $autors = Autor::all();
-        return view('admin.autor.CadastroAutor', compact('autors'));
+        return view('autor.CadastroAutor', compact('autors'));
     }
 
     public function store(Request $request)
@@ -24,7 +24,7 @@ class AutorController extends Controller
     {
         $autors = Autor::where('id', $id)->first();
         if (!empty($autors)) {
-            return view('admin.autor.EdicaoAutor', compact('autors'));
+            return view('autor.EdicaoAutor', compact('autors'));
         }
         else{
             return redirect()->route('autor.create')->with('error', 'Autor não encontrado.');

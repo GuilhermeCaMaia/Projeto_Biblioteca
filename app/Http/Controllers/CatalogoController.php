@@ -12,6 +12,6 @@ class CatalogoController extends Controller
     public function create(){
         $autors = Autor::all();
         $livros = Livro::all();
-        return view('user.catalogo', compact('autors', 'livros'));
+        return view('catalogo', compact('autors', 'livros'));
     }
 }

@@ -27,7 +27,7 @@ class LivroController extends Controller
         $livros = Livro::where('id', $id)->first();
         $autors = Autor::all();
         if(!empty($livros)){
-            return view('admin.livro.EdicaoLivro', compact('livros', 'autors'));
+            return view('livro.EdicaoLivro', compact('livros', 'autors'));
         }
         else{
             return redirect()->route('livro.create')->with('error', 'Livro não encontrado.');
