@@ -79,4 +79,3 @@ Route::prefix('biblioteca')->group(function () {
 Route::get('/search', [LivroController::class, 'search'])->name('livro.search');
 
 require __DIR__.'/auth.php';
-

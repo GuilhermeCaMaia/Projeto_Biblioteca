@@ -6,11 +6,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="bg-light">
-
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
             <a class="navbar-brand" href="{{ route('user.index') }}">Biblioteca Digital</a>
+            {{-- Menu sanduiche --}}
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -32,9 +32,6 @@
                             <button
                                 type="submit"
                                 class="btn btn-link nav-link text-white"
-                                style="display: inline; padding: 0; margin: 0; transition: background-color 0.3s, color 0.3s;"
-                                onmouseover="this.style.backgroundColor='#0d6efd'; this.style.color='#fff';"
-                                onmouseout="this.style.backgroundColor=''; this.style.color='white';"
                                 >
                                     logout
                             </button>
@@ -45,12 +42,6 @@
         </div>
     </nav>
     @yield('content')
-<!-- Rodapé -->
-    <footer class="bg-dark text-white py-4 mt-5">
-        <div class="container text-center">
-            © {{ date('Y') }} Biblioteca Digital. Todos os direitos reservados.
-        </div>
-    </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    {{-- conteudo da pagina --}}
 </body>
 </html>
